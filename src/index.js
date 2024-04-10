@@ -45,6 +45,6 @@ app.get("/admin", (req, res) => {
   res.sendFile("admin.html", { root: "./views" });
 });
 
-server.listen(3001, () => {
+server.listen(process.env.PORT || 3001, () => {
   console.log("listening on *:3001");
 });
