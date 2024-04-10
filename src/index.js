@@ -12,7 +12,7 @@ io.on("connection", (socket) => {
   socket.emit("color", color);
 
   socket.on("emoji", (emoji) => {
-    socket.broadcast.emit("emoji", emoji);
+    if (emoji != "🍆") socket.broadcast.emit("emoji", emoji);
   });
 
   socket.on("color", (selectedColor) => {
@@ -45,6 +45,6 @@ app.get("/admin", (req, res) => {
   res.sendFile("admin.html", { root: "./views" });
 });
 
-server.listen(3000, () => {
-  console.log("listening on *:3000");
+server.listen(3001, () => {
+  console.log("listening on *:3001");
 });

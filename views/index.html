@@ -26,6 +26,9 @@
     </style>
   </head>
   <body>
+    <center>
+      <h1 style="color: white;">Control the TV</h1>
+    </center>
     <div id="emojis"></div>
     <div
       style="
@@ -42,30 +45,34 @@
       ></div>
       <div
         class="color"
-        data-color="#B14134"
-        style="background-color: #b14134"
+        data-color="#ec3750"
+        style="background-color: #ec3750"
       ></div>
       <div
         class="color"
-        data-color="#a633d6"
-        style="background-color: #a633d6"
+        data-color="#46764d"
+        style="background-color: #46764d"
       ></div>
       <div
         class="color"
-        data-color="#338eda"
-        style="background-color: #338eda"
+        data-color="#8bccee"
+        style="background-color: #8bccee"
       ></div>
       <div
         class="color"
-        data-color="#33d6a6"
-        style="background-color: #33d6a6"
+        data-color="#9f6fdc"
+        style="background-color: #9f6fdc"
       ></div>
     </div>
 
-    <form id="message">
-      <input
-        type="text"
-        name="message"
+    <center>
+      <h1 style="color: white;">Join Hack Club</h1>
+    </center>
+    <form id="form">
+      <a href="https://discord.gg/RcJpnuTDj6"
+        type="submit"
+        id="name"
+        name="name"
         style="
           width: 300px;
           margin: 0 auto;
@@ -73,19 +80,20 @@
           background-color: rgb(47, 47, 47);
           border-radius: 999px;
           padding: 10px 15px;
-          margin-top: 20px;
+          margin-top: 10px;
           border: none;
           color: white;
-        "
-        placeholder="Enter a message..."
-        required
-      />
+          font-size: 20px;
+          display: flex;
+          justify-content: center;
+          text-decoration: none;
+        ">Discord</a>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      const socket = io();
+      window.socket = io();
 
       const picker = new EmojiMart.Picker({
         onEmojiSelect({ native: emoji }) {
@@ -108,11 +116,6 @@
         });
       }
 
-      document.getElementById("message").addEventListener("submit", (e) => {
-        e.preventDefault();
-        socket.emit("message", e.target.message.value.trim());
-        e.target.reset();
-      });
     </script>
   </body>
 </html>
