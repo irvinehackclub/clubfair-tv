@@ -64,32 +64,36 @@
         style="background-color: #9f6fdc"
       ></div>
     </div>
-
     <center>
-      <h1 style="color: white;">Join Hack Club</h1>
+    <section id="section" style="background-color: rgb(159, 111, 220); padding: 16px; max-width: 324px; margin-top: 20px; border-radius: 1rem;">
+    <center>
+      <h1 style="color: white; margin-top: 4px; font-size: 2em;">Join Hack Club</h1>
     </center>
     <form id="form">
       <a href="https://discord.gg/RcJpnuTDj6"
-        type="submit"
         id="name"
         name="name"
+        target="_blank"
         style="
           width: 300px;
           margin: 0 auto;
           display: block;
-          background-color: rgb(47, 47, 47);
+          background-color: black;
           border-radius: 999px;
           padding: 10px 15px;
           margin-top: 10px;
           border: none;
           color: white;
-          font-size: 20px;
+          font-size: 18px;
           display: flex;
           justify-content: center;
           text-decoration: none;
-        ">Discord</a>
+          border: 2px solid white;
+          box-sizing: border-box;
+        ">Click Here to Join our Discord!</a>
     </form>
-
+  </section>
+</center>
     <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -111,10 +115,15 @@
 
         element.addEventListener("click", function () {
           const { color } = this.dataset;
+          document.getElementById("section").style.backgroundColor = color.split("black").join("rgb(47, 47, 47)");
 
           socket.emit("color", color);
         });
       }
+
+      socket.on("color", (color) => {
+        document.getElementById("section").style.backgroundColor = color.split("black").join("rgb(47, 47, 47)");
+      });
 
     </script>
   </body>
