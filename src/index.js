@@ -33,6 +33,19 @@ io.on("connection", (socket) => {
   });
 });
 
+setInterval(() => {
+  fetch("https://inventory.vaquero.dev/api/inventory").then(res => res.text()).then(text => {
+    console.log(text);
+    try {
+      const json = JSON.parse(text);
+      console.log(json);
+      io.emit("stock", json);
+    } catch (err) {
+      console.error("!!!", err, "!!!");
+    }
+  })
+}, 45_000);
+
 app.get("/", (req, res) => {
   res.sendFile("index.html", { root: "./views" });
 });

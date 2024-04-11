@@ -24,11 +24,9 @@
   </head>
   <body>
     <div style="display: flex; align-items: center; justify-content: center">
-      <img
-        style="width: 25vw; border-radius: 1vw"
-        src="https://cloud-jqxwzy7bz-hack-club-bot.vercel.app/0group_2__7_.png"
-      />
-
+      <div style="display: flex;flex-direction: column;align-items: center;gap: 6px;font-style: italic;font-size: 20px;">
+        <img style="width: 25vw; border-radius: 1vw" src="https://cloud-jqxwzy7bz-hack-club-bot.vercel.app/0group_2__7_.png">Interactive Display!
+        </div>
       <div
         style="
           height: 100vh;
@@ -70,6 +68,10 @@
       </h3>
     </div>
 
+    <div id="stock" style="position: absolute; bottom: 2vw; right: 2vw; width: 96vw; display: flex; flex-direction: row; align-items: center; justify-content: center; height: 30px;">
+      
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -102,6 +104,21 @@
 
       socket.on("color", (color) => {
         document.body.style.backgroundColor = color;
+      });
+
+      socket.on("stock", stock => {
+        window.stock = stock;
+
+        const element = document.getElementById("stock");
+
+        element.innerHTML = /*html*/`
+          <h3 style="font-size: 2vw; font-weight: normal; text-align: center;">
+            Flavors & Supply:<br />
+            ${Object.entries(stock).map(([name, qty]) => /*html*/`
+                <strong>${name}</strong>: ${qty}
+              `).join(" • ")}
+          </h3>
+        `;
       });
     </script>
   </body>
